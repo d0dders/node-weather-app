@@ -1,5 +1,13 @@
 const http = require('http');
-const settings = require('./settings.json')
+const settings = require('./.settings.json')
+
+
+function printWeather(weather){
+    const temp = weather.main.temp;
+    const location = weather.name;
+    console.log(`The temperature in ${location} is ${temp}`);
+}
+
 
 function get(location) {
     const request = http.get(`http://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${settings.apiKey}`, (res) => {
@@ -10,8 +18,7 @@ function get(location) {
             });
             res.on('end', () => {
                 const requestJson = JSON.parse(responseString);
-                console.dir(requestJson);
-                console.log(requestJson.main.temp);
+                printWeather(requestJson);
             });
         }
     });
