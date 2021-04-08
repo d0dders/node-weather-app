@@ -76,4 +76,4 @@ typings/
 .fusebox/
 
 # Settings file (API Key)
-settings.json
+.settings.json
